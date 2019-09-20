@@ -1,0 +1,30 @@
+const User = require('../../models/User')
+const httpMocks = require('node-mocks-http');
+const newUserData = require('../mock-data/new-user.json')
+const controller = require('../../controller/controller')
+
+jest.mock('../../models/User');
+
+
+let req,res,next;
+
+beforeEach(()=>{
+    req =  httpMocks.createRequest()//mock data
+    res = httpMocks.createResponse()//mock data
+    next = jest.fn();
+})
+
+
+describe('controller create',()=>{
+    it("check wheather it is function",()=>{
+        expect(typeof controller.createUser).toBe("function")
+    })
+
+    it("should call save",async ()=>{
+        controller.createUser(req,res,next)
+        req.body = newUserData
+        const user =  await new User(req.body)
+        expect(user.save()).toBeCalledWith(newUserData)
+    })
+})
+
