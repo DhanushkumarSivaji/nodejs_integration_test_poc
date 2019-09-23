@@ -26,6 +26,20 @@ const User = require('../../models/User')
 //     }).expect(200)
 // })
 
+// test("Should Signin a user",async()=>{
+//     jest.useFakeTimers();
+//     setTimeout(async()=>{
+//         await request(app).post('/api/auth').send({
+
+//             email:userOne.email,
+//             password:userOne.password
+   
+//       }).expect(200)
+//     },10000)
+//     jest.runAllTimers();
+// })
+
+
 
 let contactid;
 let token;
